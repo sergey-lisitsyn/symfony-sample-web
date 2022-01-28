@@ -1,0 +1,56 @@
+version: '3'
+
+services:
+
+  nginx:
+    build:
+      context: ./.build/docker/nginx
+      dockerfile: Dockerfile
+      args:
+        UID: ${UID:-1000}
+        GID: ${GID:-1000}
+    volumes:
+      - ./:/app
+      - ./.build/docker/nginx/conf.d:/etc/nginx/conf.d
+      - ./.build/docker/nginx/nginx.conf:/etc/nginx/nginx.conf
+    depends_on:
+      - php
+    networks:
+      - sprintf_erp_back
+
+  php:
+    build:
+      context: ./.build/docker/php
+      dockerfile: Dockerfile
+      args:
+        UID: ${UID:-1000}
+        GID: ${GID:-1000}
+    volumes:
+      - ./:/app
+    depends_on:
+      - postgres
+    networks:
+      - sprintf_erp_back
+
+  postgres:
+    image: postgres:13
+    volumes:
+      - sprintf_erp_dbdata:/var/lib/postgresql/data
+    environment:
+      TZ: Europe/Moscow
+      POSTGRES_PASSWORD: ${DB_PASS:-sprintf}
+      POSTGRES_USER: ${DB_USER:-sprintf}
+      POSTGRES_DB: ${DB_NAME:-sprintf}
+    networks:
+      - sprintf_erp_back
+
+volumes:
+  sprintf_erp_dbdata:
+
+networks:
+  sprintf_erp_back:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 192.168.220.0/28

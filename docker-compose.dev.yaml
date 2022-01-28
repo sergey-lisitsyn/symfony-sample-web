@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+
+  nginx:
+    ports:
+      - "80:80"
+      - "443:443"
+
+  php:
+    environment:
+      XDEBUG_CONFIG: "remote_host=192.168.220.1 remote_enable=1"
+      PHP_IDE_CONFIG: "serverName=Docker"
+    volumes:
+      - ./.build/docker/php/xdebug.ini:/usr/local/etc/php/conf.d/xdebug.ini
+
+  postgres:
+    ports:
+      - "5432:5432"
