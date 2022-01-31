@@ -11,6 +11,8 @@
 <div class="example-wrapper">
     <h1>Hello {{ app.user.username ?? 'Guest' }}!</h1>
 
-    <a href="/logout">Logout</a>
+    {% if app.user != null %}
+        <a href="/logout">Logout</a>
+    {% endif %}
 </div>
 {% endblock %}
