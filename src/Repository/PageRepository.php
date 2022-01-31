@@ -19,10 +19,11 @@ class PageRepository extends ServiceEntityRepository
         parent::__construct($registry, Page::class);
     }
 
-//     /**
-//      * @return Page[] Returns an array of Page objects
-//      */
-    /*public function findByExampleField($value)
+    // /**
+    //  * @return Page[] Returns an array of Page objects
+    //  */
+    /*
+    public function findByExampleField($value)
     {
         return $this->createQueryBuilder('p')
             ->andWhere('p.exampleField = :val')
@@ -32,14 +33,18 @@ class PageRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult()
         ;
-    }*/
+    }
+    */
 
-    public function findOneById($value): ?Page
+    /*
+    public function findOneBySomeField($value): ?Page
     {
         return $this->createQueryBuilder('p')
-            ->andWhere('p.id = :val')
+            ->andWhere('p.exampleField = :val')
             ->setParameter('val', $value)
             ->getQuery()
-            ->getOneOrNullResult();
+            ->getOneOrNullResult()
+        ;
     }
+    */
 }
