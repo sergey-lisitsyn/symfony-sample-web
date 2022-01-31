@@ -58,7 +58,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    #[ORM\Column(type: 'string')]
+    #[ORM\Column(type: 'string', length: 128)]
     private $password;
 
     /**
