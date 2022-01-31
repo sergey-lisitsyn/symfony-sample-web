@@ -11,20 +11,17 @@ class Page
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
-    private $id;
-
-    #[ORM\Column(type: 'string', length: 255)]
-    private $title;
-
-    #[ORM\Column(type: 'text')]
-    private $content;
+    private int $id;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getTitle(): ?string
+    #[ORM\Column(type: 'string', length: 255)]
+    private string $title;
+
+    public function getTitle(): string
     {
         return $this->title;
     }
@@ -36,7 +33,10 @@ class Page
         return $this;
     }
 
-    public function getContent(): ?string
+    #[ORM\Column(type: 'text')]
+    private string $content;
+
+    public function getContent(): string
     {
         return $this->content;
     }
