@@ -11,17 +11,14 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class PageController extends AbstractController
 {
-    private PageRepository $repository;
-
-    public function __construct(PageRepository $repository)
-    {
-        $this->repository = $repository;
-    }
+    public function __construct(
+        private PageRepository $repository
+    ) {}
 
     #[Route('/pages/{id}', name: 'page')]
-    public function __invoke(Request $request, $id): Response
+    public function __invoke($id): Response
     {
-        $page = $this->repository->findOneBy(['id' => $id]);
+        $page = $this->repository->find($id);
 
         if ($page === null) {
             throw new NotFoundHttpException();
