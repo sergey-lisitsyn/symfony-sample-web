@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20220131124157 extends AbstractMigration
+final class Version20220131160359 extends AbstractMigration
 {
     public function getDescription(): string
     {
@@ -25,6 +25,6 @@ final class Version20220131124157 extends AbstractMigration
 
     public function down(Schema $schema): void
     {
-        $this->addSql('DELETE FROM public."user" WHERE id=1;');
+        $this->addSql('DELETE FROM public."user" WHERE username=\'admin\';');
     }
 }
