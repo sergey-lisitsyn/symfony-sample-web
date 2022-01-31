@@ -19,7 +19,7 @@ final class Version20220131124157 extends AbstractMigration
 
     public function up(Schema $schema): void
     {
-        $this->addSql("INSERT INTO public.\"user\" (id,username,roles,password) VALUES (1,'admin','{}'::json,'admin');");
+        $this->addSql("INSERT INTO public.\"user\" (id,username,roles,password) VALUES (1,'admin','{}'::json,'$2y$10$Dv1Klg1u6mTtKIlHfLBW3.MSoVcndGBtYxJsn.vnsG9dq7AycaPt.');");
 
     }
 
